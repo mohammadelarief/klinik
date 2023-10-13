@@ -69,7 +69,7 @@
                       <div class="#">
                       </div>
                       <button class="btn btn-success" id="filter">Filter </button>
-                      <a href="javascript:location.reload(true)" class="btn btn-warning">Reset </a>
+                      <button class="btn btn-warning" id="reset">Reset </button>
                       <?php echo anchor(site_url('medical/ekspor_'), '<i class="fa fa-file-excel"></i> Download Excel', 'class="btn btn-info"'); ?>
                     </div>
                   </div>

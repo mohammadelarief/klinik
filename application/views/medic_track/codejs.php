@@ -226,11 +226,14 @@
             // var tables = t;
             table.ajax.reload();
         });
-        // $('#reset').on('click', function() {
-        //     _start = $("#start").val('');
-        //     _end = $("#end").val('');
-        //     _check = $("#check").val('');
-        //     table.ajax.reload();
-        // });
+        $('#reset').on('click', function() {
+            $("#start").val('').trigger("change");
+            $("#end").val('').trigger("change");
+            $("#check").val('all').trigger("change");
+            _start = $("#start").val();
+            _end = $("#end").val();
+            _check = $("#check").val();
+            table.ajax.reload();
+        });
     });
 </script>
