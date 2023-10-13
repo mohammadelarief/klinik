@@ -208,13 +208,13 @@ class Medic_track extends CI_Controller
         );
         // Inisialisasi data
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', "DAFTAR REKAPITULASI PASIEN KLINIK"); // Set kolom A1 dengan tulisan "DATA SISWA"
-        $objPHPExcel->getActiveSheet()->mergeCells('A1:K1'); // Set Merge Cell pada kolom A1 sampai E1
+        $objPHPExcel->getActiveSheet()->mergeCells('A1:L1'); // Set Merge Cell pada kolom A1 sampai E1
         $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
         $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(16); // Set font size 15 untuk kolom A1
         $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
 
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', "YAYASAN DARUT TAQWA"); // Set kolom A1 dengan tulisan "DATA SISWA"
-        $objPHPExcel->getActiveSheet()->mergeCells('A2:K2'); // Set Merge Cell pada kolom A1 sampai E1
+        $objPHPExcel->getActiveSheet()->mergeCells('A2:L2'); // Set Merge Cell pada kolom A1 sampai E1
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(TRUE); // Set bold kolom A1
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(16); // Set font size 15 untuk kolom A1
         $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
@@ -224,15 +224,16 @@ class Medic_track extends CI_Controller
         $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A4', 'No')
             ->setCellValue('B4', 'Tanggal')
-            ->setCellValue('C4', 'IDYYS')
-            ->setCellValue('D4', 'Nama')
-            ->setCellValue('E4', 'Periode')
-            ->setCellValue('F4', 'Unit')
-            ->setCellValue('G4', 'Kamar/Kelas')
-            ->setCellValue('H4', 'Anamnesa')
-            ->setCellValue('I4', 'Terapi')
-            ->setCellValue('J4', 'KIF')
-            ->setCellValue('K4', 'Dokter');
+            ->setCellValue('C4', 'No Rekam Medis')
+            ->setCellValue('D4', 'IDYYS')
+            ->setCellValue('E4', 'Nama')
+            ->setCellValue('F4', 'Periode')
+            ->setCellValue('G4', 'Unit')
+            ->setCellValue('H4', 'Kamar/Kelas')
+            ->setCellValue('I4', 'Anamnesa')
+            ->setCellValue('J4', 'Terapi')
+            ->setCellValue('K4', 'KIF')
+            ->setCellValue('L4', 'Dokter');
 
         $objPHPExcel->getActiveSheet()->getStyle('A4')->applyFromArray($style_col);
         $objPHPExcel->getActiveSheet()->getStyle('B4')->applyFromArray($style_col);
@@ -245,6 +246,7 @@ class Medic_track extends CI_Controller
         $objPHPExcel->getActiveSheet()->getStyle('I4')->applyFromArray($style_col);
         $objPHPExcel->getActiveSheet()->getStyle('J4')->applyFromArray($style_col);
         $objPHPExcel->getActiveSheet()->getStyle('K4')->applyFromArray($style_col);
+        $objPHPExcel->getActiveSheet()->getStyle('L4')->applyFromArray($style_col);
         // Mengisi data dari model ke file Excel
         $no = 1;
         $row = 5; // Mulai dari baris ke-5
@@ -252,15 +254,16 @@ class Medic_track extends CI_Controller
             $objPHPExcel->getActiveSheet()
                 ->setCellValue('A' . $row, $no)
                 ->setCellValue('B' . $row, $item->tgl)
-                ->setCellValue('C' . $row, $item->idperson)
-                ->setCellValue('D' . $row, $item->nama)
-                ->setCellValue('E' . $row, $item->idperiode)
-                ->setCellValue('F' . $row, $item->title)
-                ->setCellValue('G' . $row, $item->keterangan)
-                ->setCellValue('H' . $row, $item->anamnesa)
-                ->setCellValue('I' . $row, $item->terapi)
-                ->setCellValue('J' . $row, $item->kif)
-                ->setCellValue('K' . $row, $item->dokter);
+                ->setCellValue('C' . $row, $item->no_rak)
+                ->setCellValue('D' . $row, $item->idperson)
+                ->setCellValue('E' . $row, $item->nama)
+                ->setCellValue('F' . $row, $item->idperiode)
+                ->setCellValue('G' . $row, $item->title)
+                ->setCellValue('H' . $row, $item->keterangan)
+                ->setCellValue('I' . $row, $item->anamnesa)
+                ->setCellValue('J' . $row, $item->terapi)
+                ->setCellValue('K' . $row, $item->kif)
+                ->setCellValue('L' . $row, $item->dokter);
 
             $objPHPExcel->getActiveSheet()->getStyle('A' . $row)->applyFromArray($style_row);
             $objPHPExcel->getActiveSheet()->getStyle('B' . $row)->applyFromArray($style_row);
@@ -273,6 +276,7 @@ class Medic_track extends CI_Controller
             $objPHPExcel->getActiveSheet()->getStyle('I' . $row)->applyFromArray($style_row);
             $objPHPExcel->getActiveSheet()->getStyle('J' . $row)->applyFromArray($style_row);
             $objPHPExcel->getActiveSheet()->getStyle('K' . $row)->applyFromArray($style_row);
+            $objPHPExcel->getActiveSheet()->getStyle('L' . $row)->applyFromArray($style_row);
 
             $no++;
             $row++;
@@ -290,6 +294,7 @@ class Medic_track extends CI_Controller
         $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true); // Set width kolom E
         $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true); // Set width kolom E
         $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true); // Set width kolom E
+        $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true); // Set width kolom E
 
         // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
         $objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
